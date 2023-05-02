@@ -5,7 +5,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 SRC =  start.c \
-		get_args.c
+		check_input.c
 
 OBJ = $(SRC.c=.o)
 

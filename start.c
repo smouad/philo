@@ -1,30 +1,20 @@
 #include "philo.h"
 
-void	*create_philo(void* i)
+void	*p_life(t_info *info)
 {
-	printf("philo : %d\n", (int)i);
-	return(NULL);
+	
 }
-
-
-int main(int ac, char **av)
+void	creat_philo(t_info *info)
 {
-	t_info		info;
-	pthread_t	*thread;
-	size_t	i = 1;
+	int i;
 
-	get_args(&info, ac, av);
-	thread = malloc(sizeof(t_philo) * info.number_of_philosophers);
-	while ((int) i <= info.number_of_philosophers)
-	{
-		pthread_create(&thread[i], NULL,  &create_philo, (void *)i);
-		usleep(10);
-		i++;
-	}
 	i = 0;
-	while ((int) i <= info.number_of_philosophers)
+	while (i < info->num_philos)
 	{
-		pthread_join(thread[i], NULL);
-		i++;
+		info->philo[i].id = i + 1;
+		info->philo[i].meals = 0;
+		info->philo[i].right_fork = i; 
+		info->philo[i].left_fork = (i + 1) % info->num_philos;
+		pthread_create(&info->philo[i].thread, NULL, p_life, &info->philo[i])
 	}
 }

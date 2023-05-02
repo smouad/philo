@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_args.c                                         :+:      :+:    :+:   */
+/*   check_input.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msodor <msodor@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 10:23:07 by msodor            #+#    #+#             */
-/*   Updated: 2023/04/14 17:08:55 by msodor           ###   ########.fr       */
+/*   Updated: 2023/05/02 11:22:58 by msodor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	get_args(t_info *info, int ac, char **av)
+void	check_input(t_info *info, int ac, char **av)
 {
 	if (ac == 5 || ac == 6)
 	{
-		info->number_of_philosophers = atoi(av[1]);
-		info->time_to_die = atoi(av[2]);
-		info->time_to_eat = atoi(av[3]);
-		info->time_to_sleep = atoi(av[4]);
+		info->num_philos = ft_atoi(av[1]);
+		info->time_die = ft_atoi(av[2]);
+		info->time_eat = ft_atoi(av[3]);
+		info->time_sleep = ft_atoi(av[4]);
+		info->meals_to_eat = -1;
 		if (ac == 6)
-			info->number_of_times_each_philosopher_must_eat = atoi(av[5]);
+			info->meals_to_eat = ft_atoi(av[5]);
 	}
-	else 
+	else if (info->num_philos < 0 || info->time_eat < 0
+	|| info->time_die < 0 || info->time_sleep < 0 || info->meals_to_eat < 0)
 	{
-		printf("Number of argumment incorrect! try again.");
-		exit(0);
+		printf("Error: All arguments must be positive integers.\n");
+		return;
+	}
+	else
+	{
+		printf("Error: Number of argumment incorrect.");
+		return;
 	}
 }

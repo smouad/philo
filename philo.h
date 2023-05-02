@@ -6,21 +6,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef struct s_info t_info;
 
 typedef struct s_philo
 {
-	int	id;
+	int				id;
+	int				meals;
+	int				left_fork;
+	int				right_fork;
+	long long		last_meal;
+	pthread_t		thread;
+	struckt
 } t_philo;
+
 typedef struct s_info
 {
-	int		number_of_philosophers;
-	int		time_to_die;
-	int		time_to_eat;
-	int		time_to_sleep;
-	int		number_of_times_each_philosopher_must_eat;
+	int				num_philos;
+	int				time_die;
+	int				time_eat;
+	int				time_sleep;
+	int				meals_to_eat;
+	pthread_mutex_t *forks;
+	t_philo	*philo;
 } t_info;
 
 
-void	get_args(t_info *info, int ac, char **av);
+void	check_input(t_info *info, int ac, char **av);
 
 #endif
