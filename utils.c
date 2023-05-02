@@ -6,12 +6,11 @@
 /*   By: msodor <msodor@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 14:18:07 by msodor            #+#    #+#             */
-/*   Updated: 2023/05/01 14:58:16 by msodor           ###   ########.fr       */
+/*   Updated: 2023/05/02 17:49:02 by msodor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
 
 int	ft_atoi(const char *str)
 {
@@ -37,4 +36,3 @@ int	ft_atoi(const char *str)
 	}
 	return (res * signe);
 }
-

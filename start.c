@@ -2,7 +2,7 @@
 
 void	*p_life(t_info *info)
 {
-	
+
 }
 void	creat_philo(t_info *info)
 {
@@ -15,6 +15,6 @@ void	creat_philo(t_info *info)
 		info->philo[i].meals = 0;
 		info->philo[i].right_fork = i; 
 		info->philo[i].left_fork = (i + 1) % info->num_philos;
-		pthread_create(&info->philo[i].thread, NULL, p_life, &info->philo[i])
+		pthread_create(&info->philo[i].thread, NULL, p_life, &info->philo[i]);
 	}
 }
