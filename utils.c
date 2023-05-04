@@ -6,7 +6,7 @@
 /*   By: msodor <msodor@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 14:18:07 by msodor            #+#    #+#             */
-/*   Updated: 2023/05/02 17:49:02 by msodor           ###   ########.fr       */
+/*   Updated: 2023/05/04 16:46:13 by msodor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_atoi(const char *str)
 			signe = -1;
 		i++;
 	}
-	while (ft_isdigit(str[i]) == 1)
+	while (str[i] >= '0' && str[i] <= '9')
 	{
 		res = res * 10 + (str[i] - '0');
 		i++;

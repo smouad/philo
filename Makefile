@@ -1,11 +1,13 @@
-NAME = philoo
+NAME = philo
 
 CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
 SRC =  start.c \
-		check_input.c
+		get_args.c \
+		main.c \
+		utils.c \
 
 OBJ = $(SRC.c=.o)
 

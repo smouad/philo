@@ -6,7 +6,7 @@
 /*   By: msodor <msodor@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 17:42:16 by msodor            #+#    #+#             */
-/*   Updated: 2023/05/02 17:42:23 by msodor           ###   ########.fr       */
+/*   Updated: 2023/05/04 16:56:36 by msodor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,9 @@ typedef struct s_info
 }	t_info;
 
 void	check_input(t_info *info, int ac, char **av);
+void	*cicle(void *arg);
+void	create_philo(t_info *info);
+void	init_mutex(t_info *info);
+int		ft_atoi(const char *str);
 
 #endif
