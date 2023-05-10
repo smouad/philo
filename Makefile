@@ -8,6 +8,7 @@ SRC =  start.c \
 		get_args.c \
 		philo.c \
 		utils.c \
+		print_utils.c \
 
 OBJ = $(SRC.c=.o)
 

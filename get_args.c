@@ -6,7 +6,7 @@
 /*   By: msodor <msodor@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 12:25:07 by msodor            #+#    #+#             */
-/*   Updated: 2023/05/05 18:26:15 by msodor           ###   ########.fr       */
+/*   Updated: 2023/05/10 15:28:32 by msodor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	check_input(t_info *info, int ac, char **av)
 		info->time_die = ft_atoi(av[2]);
 		info->time_eat = ft_atoi(av[3]);
 		info->time_sleep = ft_atoi(av[4]);
+		info->finish = 0;
 		info->meals_to_eat = -1;
 		if (ac == 6)
 			info->meals_to_eat = ft_atoi(av[5]);
