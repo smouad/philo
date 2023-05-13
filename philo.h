@@ -6,7 +6,7 @@
 /*   By: msodor <msodor@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 17:42:16 by msodor            #+#    #+#             */
-/*   Updated: 2023/05/10 20:12:21 by msodor           ###   ########.fr       */
+/*   Updated: 2023/05/13 13:10:39 by msodor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_philo
 	int				right_fork;
 	int				full;
 	int				alive;
+	pthread_t		thread;
 	long long		last_meal;
 	long long		creation_time;
 	t_info			*info;
@@ -44,18 +45,25 @@ typedef struct s_info
 	int				finish;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print;
-	pthread_t		threads;
 	t_philo			*philo;
 }	t_info;
 
-int			check_input(t_info *info, int ac, char **av);
-void		*cycle(void *arg);
+/* --- Init --- */
+void		get_input(t_info *info, int ac, char **av);
+int			check_input(t_info *info, int ac);
 void		create_philo(t_info *info);
 void		init_mutex(t_info *info);
-long long	get_time(void);
+
+/* --- Print --- */
 void		print_msg(t_philo *philo, char *msg);
-void		my_sleep(long long sleep_time);
-void		death_checker(t_philo *philo);
+long long	get_time(void);
+void		my_sleep(int sleep_time);
+
+/* --- Actions --- */
+void		*cycle(void *arg);
+// int			check_death(t_philo *philo);
+int			check_death(t_info *info);
+int			check_finish(t_info *info);
 int			ft_atoi(const char *str);
 
 #endif

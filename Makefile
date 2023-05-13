@@ -2,15 +2,14 @@ NAME = philo
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g
 
-SRC =  start.c \
-		get_args.c \
+SRC =  ft_init.c \
+		ft_routine.c \
 		philo.c \
-		utils.c \
-		print_utils.c \
+		ft_print.c \
 
 OBJ = $(SRC.c=.o)
 
 all : $(OBJ)
-	CC $(CFLAGS) $(SRC) -o $(NAME) 
+	$(CC) $(CFLAGS) $(SRC) -o $(NAME) 
