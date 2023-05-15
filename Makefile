@@ -8,6 +8,7 @@ SRC =  ft_init.c \
 		ft_routine.c \
 		philo.c \
 		ft_print.c \
+		ft_utils.c \
 
 OBJ = $(SRC.c=.o)
 

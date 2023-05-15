@@ -6,7 +6,7 @@
 /*   By: msodor <msodor@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:25:29 by msodor            #+#    #+#             */
-/*   Updated: 2023/05/15 15:48:18 by msodor           ###   ########.fr       */
+/*   Updated: 2023/05/15 20:42:18 by msodor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ int	main(int ac, char **av)
 	create_philo(info);
 	if (check_finish(info))
 	{
-		while (1);	
-		return (1);
+		free_join(info);
+		pause();
+		return (free(info->philo), free(info), 1);
 	}
-	return (0);
+	return (free(info->philo), free(info), 0);
 }

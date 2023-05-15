@@ -6,7 +6,7 @@
 /*   By: msodor <msodor@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 17:42:16 by msodor            #+#    #+#             */
-/*   Updated: 2023/05/13 13:10:39 by msodor           ###   ########.fr       */
+/*   Updated: 2023/05/15 20:21:04 by msodor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,10 @@ void		my_sleep(int sleep_time);
 
 /* --- Actions --- */
 void		*cycle(void *arg);
-// int			check_death(t_philo *philo);
 int			check_death(t_info *info);
 int			check_finish(t_info *info);
 int			ft_atoi(const char *str);
+void		free_join(t_info *info);
+void		check_full(t_info *info);
 
 #endif
