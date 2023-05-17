@@ -6,7 +6,7 @@
 /*   By: msodor <msodor@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 10:47:28 by msodor            #+#    #+#             */
-/*   Updated: 2023/05/15 14:52:34 by msodor           ###   ########.fr       */
+/*   Updated: 2023/05/17 12:40:17 by msodor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	init_mutex(t_info *info)
 
 	i = 0;
 	pthread_mutex_init(&info->print, 0);
+	pthread_mutex_init(&info->print, 0);
 	info->forks = malloc(sizeof(pthread_mutex_t) * info->num_philos);
 	while (i < info->num_philos)
 		pthread_mutex_init(&info->forks[i++], 0);
@@ -92,7 +93,7 @@ void	create_philo(t_info *info)
 		info->philo[i].meals = 0;
 		info->philo[i].right_fork = i;
 		info->philo[i].left_fork = (i + 1) % info->num_philos;
-		info->philo[i].last_meal = get_time();
+		info->philo[i].last_meal = creation_time;
 		info->philo[i].alive = 1;
 		info->philo[i].info = info;
 		pthread_create(&info->philo[i].thread, NULL, cycle, &info->philo[i]);

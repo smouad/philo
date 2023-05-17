@@ -6,7 +6,7 @@
 /*   By: msodor <msodor@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 12:25:48 by msodor            #+#    #+#             */
-/*   Updated: 2023/05/15 20:34:23 by msodor           ###   ########.fr       */
+/*   Updated: 2023/05/17 16:38:29 by msodor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	philo_eat(t_philo *philo)
 {
 	print_msg(philo, "is eating");
-	my_sleep(philo->info->time_eat);
+	my_sleep(philo->info->time_eat, philo);
 	pthread_mutex_lock(&philo->info->print);
 	philo->last_meal = get_time();
 	pthread_mutex_unlock(&philo->info->print);
@@ -46,9 +46,23 @@ void	*cycle(void *arg)
 		pthread_mutex_unlock(&philo->info->forks[philo->right_fork]);
 		pthread_mutex_unlock(&philo->info->forks[philo->left_fork]);
 		print_msg(philo, "is sleeping");
-		my_sleep(philo->info->time_sleep);
+		my_sleep(philo->info->time_sleep, philo);
 	}
 	return (NULL);
+}
+
+void	kill_all(t_info *info)
+{
+	int	i;
+
+	i = 0;
+	while (i < info->num_philos)
+	{
+		pthread_mutex_lock(&info->print);
+		info->philo[i].alive = 0;
+		pthread_mutex_unlock(&info->print);
+		i++;
+	}
 }
 
 int	check_death(t_info *info)
@@ -59,20 +73,19 @@ int	check_death(t_info *info)
 	while (i < info->num_philos)
 	{
 		pthread_mutex_lock(&info->print);
-		if (get_time() - info->philo[i].last_meal >= info->time_die)
+		if (get_time() - info->philo[i].last_meal > info->time_die)
 		{
 			pthread_mutex_unlock(&info->print);
-			print_msg(info->philo, "died");
-			i = 0;
-			while (i < info->num_philos)
-			{
-				info->philo[i].alive = 0;
-				i++;
-			}
+			kill_all(info);
+			pthread_mutex_lock(&info->print);
+			printf("%lld %d %s\n", get_time() - info->philo->creation_time, \
+			info->philo->id, "died");
+			pthread_mutex_unlock(&info->print);
+			if (info->num_philos == 1)
+				pthread_mutex_unlock(&info->forks[0]);
 			return (1);
 		}
-		else
-			pthread_mutex_unlock(&info->print);
+		pthread_mutex_unlock(&info->print);
 		i++;
 	}
 	return (0);

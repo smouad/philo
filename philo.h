@@ -6,7 +6,7 @@
 /*   By: msodor <msodor@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 17:42:16 by msodor            #+#    #+#             */
-/*   Updated: 2023/05/15 20:21:04 by msodor           ###   ########.fr       */
+/*   Updated: 2023/05/16 18:17:37 by msodor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_info
 	int				finish;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print;
+	pthread_mutex_t	lock;
 	t_philo			*philo;
 }	t_info;
 
@@ -57,7 +58,7 @@ void		init_mutex(t_info *info);
 /* --- Print --- */
 void		print_msg(t_philo *philo, char *msg);
 long long	get_time(void);
-void		my_sleep(int sleep_time);
+void		my_sleep(int sleep_time, t_philo *philo);
 
 /* --- Actions --- */
 void		*cycle(void *arg);

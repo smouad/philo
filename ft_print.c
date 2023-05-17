@@ -6,7 +6,7 @@
 /*   By: msodor <msodor@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:27:55 by msodor            #+#    #+#             */
-/*   Updated: 2023/05/13 10:51:41 by msodor           ###   ########.fr       */
+/*   Updated: 2023/05/17 16:40:39 by msodor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,20 @@ void	print_msg(t_philo *philo, char *ms)
 	pthread_mutex_unlock(&philo->info->print);
 }
 
-void	my_sleep(int sleep_time)
+void	my_sleep(int sleep_time, t_philo *philo)
 {
 	long long	current;
 
 	current = get_time();
 	while (1)
 	{
-		if (get_time() - current >= sleep_time)
+		pthread_mutex_lock(&philo->info->print);
+		if (get_time() - current >= sleep_time || !philo->alive)
+		{
+			pthread_mutex_unlock(&philo->info->print);
 			break ;
-		usleep(100);
+		}
+		pthread_mutex_unlock(&philo->info->print);
+		usleep(300);
 	}
 }
