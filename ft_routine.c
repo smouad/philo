@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_routine.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msodor <msodor@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: msodor <msodor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 12:25:48 by msodor            #+#    #+#             */
-/*   Updated: 2023/05/17 16:38:29 by msodor           ###   ########.fr       */
+/*   Updated: 2023/10/28 13:19:49 by msodor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	philo_eat(t_philo *philo)
-{
-	print_msg(philo, "is eating");
-	my_sleep(philo->info->time_eat, philo);
-	pthread_mutex_lock(&philo->info->print);
-	philo->last_meal = get_time();
-	pthread_mutex_unlock(&philo->info->print);
-	pthread_mutex_lock(&philo->info->print);
-	philo->meals += 1;
-	pthread_mutex_unlock(&philo->info->print);
-}
 
 void	*cycle(void *arg)
 {
@@ -42,7 +30,14 @@ void	*cycle(void *arg)
 		print_msg(philo, "has taken a fork");
 		pthread_mutex_lock(&philo->info->forks[philo->right_fork]);
 		print_msg(philo, "has taken a fork");
-		philo_eat(philo);
+    print_msg(philo, "is eating");
+    my_sleep(philo->info->time_eat, philo);
+    pthread_mutex_lock(&philo->info->print);
+    philo->last_meal = get_time();
+    pthread_mutex_unlock(&philo->info->print);
+    pthread_mutex_lock(&philo->info->print);
+    philo->meals += 1;
+    pthread_mutex_unlock(&philo->info->print);
 		pthread_mutex_unlock(&philo->info->forks[philo->right_fork]);
 		pthread_mutex_unlock(&philo->info->forks[philo->left_fork]);
 		print_msg(philo, "is sleeping");
